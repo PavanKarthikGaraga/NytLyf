@@ -1,0 +1,11 @@
+# Expo local state
+my-app/.expo/
+
+# Dependencies
+my-app/node_modules/
+
+# Generated native folders
+my-app/ios/
+my-app/android/
+my-app/dist/
+my-app/web-build/

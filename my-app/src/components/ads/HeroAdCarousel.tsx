@@ -6,10 +6,10 @@ import {
     FlatList,
     TouchableOpacity,
     StyleSheet,
-    Dimensions,
     Linking,
     NativeSyntheticEvent,
     NativeScrollEvent,
+    useWindowDimensions,
 } from 'react-native';
 import { COLORS } from '../../constants/theme';
 import { Ad } from '../../types';
@@ -20,14 +20,14 @@ interface HeroAdCarouselProps {
     interval?: number;
 }
 
-const { width } = Dimensions.get('window');
-const AD_WIDTH = width - 32; // Defined width for the visual ad content
-
 export const HeroAdCarousel: React.FC<HeroAdCarouselProps> = ({
     ads,
     autoScroll = true,
     interval = 5000
 }) => {
+    const { width } = useWindowDimensions(); // Responsive width
+    const adWidth = width - 32;
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const flatListRef = useRef<FlatList>(null);
 
@@ -59,13 +59,17 @@ export const HeroAdCarousel: React.FC<HeroAdCarouselProps> = ({
     };
 
     const renderItem = ({ item }: { item: Ad }) => (
-        <View style={styles.slideContainer}>
+        <View style={[styles.slideContainer, { width }]}>
             <TouchableOpacity
                 activeOpacity={0.9}
                 onPress={() => handlePress(item)}
-                style={styles.slideContent}
+                style={[styles.slideContent, { width: adWidth }]}
             >
-                <Image source={{ uri: item.imageUrl }} style={styles.image} resizeMode="cover" />
+                <Image
+                    source={{ uri: item.imageUrl }}
+                    style={[styles.image, { width: adWidth }]}
+                    resizeMode="cover"
+                />
                 <View style={styles.overlay}>
                     <View style={styles.adTag}>
                         <Text style={styles.adTagText}>Ad</Text>
@@ -78,7 +82,7 @@ export const HeroAdCarousel: React.FC<HeroAdCarouselProps> = ({
     if (!ads || ads.length === 0) return null;
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { width }]}>
             <FlatList
                 ref={flatListRef}
                 data={ads}
@@ -90,7 +94,7 @@ export const HeroAdCarousel: React.FC<HeroAdCarouselProps> = ({
                 onScroll={handleScroll}
                 scrollEventThrottle={16}
                 decelerationRate="fast"
-                snapToInterval={width} // Ensure it snaps to full screen width
+                snapToInterval={width}
             />
 
             {/* Pagination Dots */}
@@ -117,25 +121,21 @@ export const HeroAdCarousel: React.FC<HeroAdCarouselProps> = ({
 
 const styles = StyleSheet.create({
     container: {
-        width: width,
         height: 220,
         marginBottom: 16,
     },
     slideContainer: {
-        width: width, // Full width container for paging
-        height: '100%',
-        alignItems: 'center', // Center the inset content
+        height: 220,
+        alignItems: 'center',
         justifyContent: 'center',
     },
     slideContent: {
-        width: AD_WIDTH, // Inset width
-        height: '100%',
+        height: 200,
         borderRadius: 12,
         overflow: 'hidden',
     },
     image: {
-        width: '100%',
-        height: '100%',
+        height: 200,
     },
     overlay: {
         ...StyleSheet.absoluteFillObject,

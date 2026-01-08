@@ -12,11 +12,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { mockEvents, mockUser } from '../../src/data/mockData';
-import { COLORS } from '../../src/constants/theme';
+import { useTheme } from '../../src/contexts/ThemeContext';
 
 export default function SavedScreen() {
   const router = useRouter();
-  const colors = COLORS;
+  const { colors } = useTheme();
 
   // Get saved events from mock data
   const savedEvents = mockEvents.filter(e =>

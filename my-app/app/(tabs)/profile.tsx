@@ -12,7 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { mockUser } from '../../src/data/mockData';
-import { COLORS } from '../../src/constants/theme';
+import { useTheme } from '../../src/contexts/ThemeContext';
 
 interface MenuItemProps {
   icon: keyof typeof Ionicons.glyphMap;
@@ -25,8 +25,7 @@ interface MenuItemProps {
 }
 
 export default function ProfileScreen() {
-  const colors = COLORS;
-  const isDark = true; // Hardcoded for now until theme store is re-added
+  const { colors, isDark, toggleTheme } = useTheme();
 
   const MenuItem: React.FC<MenuItemProps> = ({
     icon,
@@ -122,7 +121,7 @@ export default function ProfileScreen() {
             rightElement={
               <Switch
                 value={isDark}
-                onValueChange={() => { }}
+                onValueChange={toggleTheme}
                 trackColor={{ false: colors.border.subtle, true: colors.neon.purple }}
                 thumbColor={colors.text.primary}
               />

@@ -1,6 +1,30 @@
 // Mock Data for NYTLYF App
 import { Event, Category, Ad, User } from '../types';
 
+// Reliable image URLs using Unsplash source (works on web and mobile)
+const IMAGES = {
+  events: {
+    neonParty: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80',
+    concert: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&q=80',
+    networking: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&q=80',
+    gala: 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=800&q=80',
+    club: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=800&q=80',
+    comedy: 'https://images.unsplash.com/photo-1585699324551-f6c309eedeca?w=800&q=80',
+  },
+  ads: {
+    hero1: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=800&q=80',
+    hero2: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80',
+    mid: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80',
+    top: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=80',
+    inline: 'https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?w=400&q=80',
+  },
+  gallery: [
+    'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80',
+    'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800&q=80',
+    'https://images.unsplash.com/photo-1496024840928-4c417adf211d?w=800&q=80',
+  ],
+};
+
 // Mock Categories
 export const mockCategories: Category[] = [
   {
@@ -79,12 +103,8 @@ export const mockEvents: Event[] = [
     slug: 'neon-nights-prism-club',
     description: 'Get ready for the ultimate neon party experience! Join us at Prism Club for an unforgettable night of music, lights, and pure energy. Featuring top DJs spinning the hottest EDM tracks all night long. Dress code: Neon & White. Complimentary glow accessories for early birds!',
     shortDescription: 'The ultimate neon party experience with top DJs at Prism Club.',
-    coverImage: 'https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=800',
-    gallery: [
-      'https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=800',
-      'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800',
-      'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800',
-    ],
+    coverImage: IMAGES.events.neonParty,
+    gallery: IMAGES.gallery,
     category: mockCategories[0],
     tags: ['EDM', 'Neon', 'Party', 'DJ'],
     venue: {
@@ -122,7 +142,7 @@ export const mockEvents: Event[] = [
     organizer: {
       _id: 'o1',
       name: 'Prism Entertainment',
-      logo: 'https://via.placeholder.com/100',
+      logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&q=80',
       isVerified: true,
     },
     createdAt: new Date().toISOString(),
@@ -134,11 +154,8 @@ export const mockEvents: Event[] = [
     slug: 'sunburn-arena-hyderabad-2024',
     description: 'Sunburn Arena is back in Hyderabad! Experience the biggest EDM festival featuring international artists. Three stages, 20+ artists, and an experience you will never forget. Early bird tickets selling fast!',
     shortDescription: 'The biggest EDM festival featuring international artists.',
-    coverImage: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800',
-    gallery: [
-      'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800',
-      'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800',
-    ],
+    coverImage: IMAGES.events.concert,
+    gallery: [IMAGES.gallery[0], IMAGES.gallery[1]],
     category: mockCategories[1],
     tags: ['EDM', 'Festival', 'Sunburn', 'International'],
     venue: {
@@ -180,7 +197,7 @@ export const mockEvents: Event[] = [
     slug: 'tech-founders-rooftop-mixer',
     description: 'Connect with fellow entrepreneurs, investors, and tech enthusiasts at our exclusive rooftop networking event. Great views, great conversations, and great opportunities await!',
     shortDescription: 'Exclusive networking for tech founders and investors.',
-    coverImage: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800',
+    coverImage: IMAGES.events.networking,
     gallery: [],
     category: mockCategories[2],
     tags: ['Networking', 'Startup', 'Tech', 'Business'],
@@ -221,11 +238,8 @@ export const mockEvents: Event[] = [
     slug: 'nye-2025-starlight-gala',
     description: 'Ring in 2025 at the most exclusive New Year Eve party in Hyderabad! Premium open bar, gourmet dinner, live performances, and the best view of midnight fireworks. Limited to 200 guests.',
     shortDescription: 'The most exclusive NYE party with premium experiences.',
-    coverImage: 'https://images.unsplash.com/photo-1467810563316-b5476525c0f9?w=800',
-    gallery: [
-      'https://images.unsplash.com/photo-1467810563316-b5476525c0f9?w=800',
-      'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800',
-    ],
+    coverImage: IMAGES.events.gala,
+    gallery: [IMAGES.gallery[1], IMAGES.gallery[2]],
     category: mockCategories[3],
     tags: ['NYE', 'Exclusive', 'Premium', 'Gala'],
     venue: {
@@ -267,7 +281,7 @@ export const mockEvents: Event[] = [
     slug: 'saturday-night-fever-club-8',
     description: 'Every Saturday is special at Club 8! Join us for the hottest Bollywood and commercial hits. Ladies get free entry before 10 PM!',
     shortDescription: 'Bollywood and commercial hits every Saturday.',
-    coverImage: 'https://images.unsplash.com/photo-1545128485-c400e7702796?w=800',
+    coverImage: IMAGES.events.club,
     gallery: [],
     category: mockCategories[5],
     tags: ['Bollywood', 'Club', 'Saturday', 'Dance'],
@@ -310,7 +324,7 @@ export const mockEvents: Event[] = [
     slug: 'standup-comedy-night',
     description: 'Laugh out loud with the best stand-up comedians in town! An evening of pure entertainment with 5 amazing performers.',
     shortDescription: 'An evening of laughter with top comedians.',
-    coverImage: 'https://images.unsplash.com/photo-1585699324551-f6c309eedeca?w=800',
+    coverImage: IMAGES.events.comedy,
     gallery: [],
     category: mockCategories[2],
     tags: ['Comedy', 'Stand-up', 'Entertainment'],
@@ -356,7 +370,7 @@ export const mockAds: Ad[] = [
     title: 'Blockbusters for Free!',
     type: 'banner',
     placement: 'home_hero',
-    imageUrl: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&h=400&fit=crop',
+    imageUrl: IMAGES.ads.hero1,
     targetUrl: 'https://hdfcbank.com',
     startDate: new Date().toISOString(),
     endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
@@ -373,7 +387,7 @@ export const mockAds: Ad[] = [
     title: 'Wicked - Experience the Best of Hollywood',
     type: 'banner',
     placement: 'home_hero',
-    imageUrl: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&h=400&fit=crop', // Placeholder for Wicked/JioCinema
+    imageUrl: IMAGES.ads.hero2,
     targetUrl: 'https://jiocinema.com',
     startDate: new Date().toISOString(),
     endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
@@ -390,7 +404,7 @@ export const mockAds: Ad[] = [
     title: 'Tu Meri Main Tera - Promoted Movie',
     type: 'banner',
     placement: 'home_mid',
-    imageUrl: 'https://images.unsplash.com/photo-1478720568477-152d9b164e63?w=800&h=400&fit=crop',
+    imageUrl: IMAGES.ads.mid,
     targetUrl: 'https://bookmyshow.com',
     startDate: new Date().toISOString(),
     endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
@@ -407,7 +421,7 @@ export const mockAds: Ad[] = [
     title: 'Kingfisher Premium - Party Responsibly',
     type: 'banner',
     placement: 'home_top',
-    imageUrl: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=800&h=200&fit=crop',
+    imageUrl: IMAGES.ads.top,
     targetUrl: 'https://kingfisher.com',
     startDate: new Date().toISOString(),
     endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
@@ -424,7 +438,7 @@ export const mockAds: Ad[] = [
     title: 'New Club Opening - Sky Lounge',
     type: 'native',
     placement: 'explore_inline',
-    imageUrl: 'https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?w=400&h=400&fit=crop',
+    imageUrl: IMAGES.ads.inline,
     targetUrl: 'https://example.com/skylounge',
     startDate: new Date().toISOString(),
     endDate: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString(),
@@ -444,7 +458,7 @@ export const mockUser: User = {
   name: 'Rahul Sharma',
   email: 'rahul@example.com',
   phone: '+91 9876543210',
-  avatar: undefined,
+  avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
   isVerified: true,
   isGuest: false,
   preferences: {

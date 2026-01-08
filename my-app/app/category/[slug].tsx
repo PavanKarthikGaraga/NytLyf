@@ -13,7 +13,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getCategoryBySlug, getEventsByCategory } from '../../src/data/mockData';
-import { COLORS } from '../../src/constants/theme';
+import { useTheme } from '../../src/contexts/ThemeContext';
 
 const getIconName = (slug: string): keyof typeof Ionicons.glyphMap => {
   const iconMap: Record<string, keyof typeof Ionicons.glyphMap> = {
@@ -30,7 +30,7 @@ const getIconName = (slug: string): keyof typeof Ionicons.glyphMap => {
 export default function CategoryEventsScreen() {
   const { slug } = useLocalSearchParams<{ slug: string }>();
   const router = useRouter();
-  const colors = COLORS;
+  const { colors } = useTheme();
 
   const category = getCategoryBySlug(slug);
   const events = getEventsByCategory(slug);

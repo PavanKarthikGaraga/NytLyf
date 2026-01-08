@@ -13,11 +13,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { mockEvents, mockAds } from '../../src/data/mockData';
-import { COLORS } from '../../src/constants/theme';
+import { useTheme } from '../../src/contexts/ThemeContext';
 
 export default function ExploreScreen() {
   const router = useRouter();
-  const colors = COLORS;
+  const { colors } = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
 

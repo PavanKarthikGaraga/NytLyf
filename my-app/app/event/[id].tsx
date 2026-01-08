@@ -15,7 +15,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getEventById, mockAds } from '../../src/data/mockData';
-import { COLORS } from '../../src/constants/theme';
+import { useTheme } from '../../src/contexts/ThemeContext';
 import { AdBanner } from '../../src/components/ads/AdBanner';
 
 const { width, height } = Dimensions.get('window');
@@ -25,7 +25,7 @@ export default function EventDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const insets = useSafeAreaInsets();
-  const colors = COLORS;
+  const { colors } = useTheme();
   const [isSaved, setIsSaved] = useState(false);
 
   const event = getEventById(id);

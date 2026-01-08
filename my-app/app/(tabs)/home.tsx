@@ -22,7 +22,7 @@ import {
   getFeaturedEvents,
   getTrendingEvents
 } from '../../src/data/mockData';
-import { COLORS } from '../../src/constants/theme';
+import { useTheme } from '../../src/contexts/ThemeContext';
 import { HeroAdCarousel } from '../../src/components/ads/HeroAdCarousel';
 import { AdBanner } from '../../src/components/ads/AdBanner';
 
@@ -32,7 +32,7 @@ type DateFilter = 'today' | 'tomorrow' | 'weekend' | 'this_week';
 
 export default function HomeScreen() {
   const router = useRouter();
-  const colors = COLORS;
+  const { colors } = useTheme();
   const [selectedDate, setSelectedDate] = useState<DateFilter>('today');
 
   const featuredEvents = getFeaturedEvents();

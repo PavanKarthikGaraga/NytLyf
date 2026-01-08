@@ -11,7 +11,8 @@ import {
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { COLORS, TYPOGRAPHY, SPACING, BORDER_RADIUS } from '../src/constants/theme';
+import { TYPOGRAPHY, SPACING, BORDER_RADIUS } from '../src/constants/theme';
+import { useTheme } from '../src/contexts/ThemeContext';
 
 interface SettingItemProps {
   icon: keyof typeof Ionicons.glyphMap;
@@ -84,7 +85,7 @@ const SettingToggle: React.FC<SettingToggleProps> = ({
 
 export default function SettingsScreen() {
   const router = useRouter();
-  const colors = COLORS;
+  const { colors } = useTheme();
 
   // Notification settings
   const [notifyEvents, setNotifyEvents] = useState(true);

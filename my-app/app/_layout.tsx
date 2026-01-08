@@ -3,22 +3,21 @@ import React from 'react';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { View, StyleSheet, LogBox } from 'react-native';
+import { ThemeProvider, useTheme } from '../src/contexts/ThemeContext';
 
 // Suppress react-native-web internal warning (not fixable in user code)
 LogBox.ignoreLogs(['props.pointerEvents is deprecated']);
 
-const COLORS = {
-  background: '#0A0A0F',
-};
+function RootLayoutContent() {
+  const { colors, isDark } = useTheme();
 
-export default function RootLayout() {
   return (
-    <View style={styles.container}>
-      <StatusBar style="light" backgroundColor={COLORS.background} />
+    <View style={[styles.container, { backgroundColor: colors.background.primary }]}>
+      <StatusBar style={isDark ? "light" : "dark"} backgroundColor={colors.background.primary} />
       <Stack
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: COLORS.background },
+          contentStyle: { backgroundColor: colors.background.primary },
           animation: 'slide_from_right',
         }}
       >
@@ -41,9 +40,16 @@ export default function RootLayout() {
   );
 }
 
+export default function RootLayout() {
+  return (
+    <ThemeProvider>
+      <RootLayoutContent />
+    </ThemeProvider>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.background,
   },
 });

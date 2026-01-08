@@ -3,7 +3,7 @@ import React from 'react';
 import { Tabs } from 'expo-router';
 import { View, StyleSheet, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { COLORS } from '../../src/constants/theme';
+import { useTheme } from '../../src/contexts/ThemeContext';
 
 type IconName = 'home' | 'compass' | 'grid' | 'bookmark' | 'person';
 
@@ -29,7 +29,7 @@ const TabIcon: React.FC<TabIconProps> = ({ name, focused, colors }) => {
 };
 
 export default function TabsLayout() {
-  const colors = COLORS;
+  const { colors } = useTheme();
 
   return (
     <Tabs

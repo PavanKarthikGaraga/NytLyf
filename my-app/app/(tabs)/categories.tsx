@@ -13,7 +13,7 @@ import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { mockCategories } from '../../src/data/mockData';
-import { COLORS } from '../../src/constants/theme';
+import { useTheme } from '../../src/contexts/ThemeContext';
 
 const { width } = Dimensions.get('window');
 const CARD_SIZE = (width - 48) / 2;
@@ -32,7 +32,7 @@ const getIconName = (slug: string): keyof typeof Ionicons.glyphMap => {
 
 export default function CategoriesScreen() {
   const router = useRouter();
-  const colors = COLORS;
+  const { colors } = useTheme();
 
   const renderCategory = ({ item }: { item: typeof mockCategories[0] }) => (
     <TouchableOpacity

@@ -12,12 +12,13 @@ import {
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { COLORS, TYPOGRAPHY, SPACING, BORDER_RADIUS } from '../src/constants/theme';
+import { TYPOGRAPHY, SPACING, BORDER_RADIUS } from '../src/constants/theme';
+import { useTheme } from '../src/contexts/ThemeContext';
 import { mockEvents } from '../src/data/mockData';
 
 export default function SearchScreen() {
   const router = useRouter();
-  const colors = COLORS;
+  const { colors } = useTheme();
   const [query, setQuery] = useState('');
 
   // Simple client-side filtering of mock data
